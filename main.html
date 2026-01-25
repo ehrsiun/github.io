@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal portfolio of [Your Name]." />
+  <meta name="description" content="Personal portfolio of Erin Hsu." />
 
-  <title>[Your Name] — Portfolio</title>
+  <title>Erin Hsu</title>
 
   <!-- Optional: system font stack for modern, clean look -->
   <style>
@@ -103,15 +103,6 @@
       gap:.75rem;
       text-decoration: none;
       color: inherit;
-    }
-    .logo{
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: radial-gradient(120% 120% at 20% 20%, var(--accent), transparent 55%),
-                  radial-gradient(120% 120% at 80% 80%, var(--accent-2), transparent 50%),
-                  var(--panel);
-      box-shadow: var(--shadow);
     }
     .brand span{
       font-weight: 650;
@@ -334,6 +325,28 @@
       color: var(--text);
       border-bottom-color: var(--border);
     }
+    .photo-card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);   /* matches your other cards */
+      overflow: hidden;               /* IMPORTANT: clips corners */
+      background: var(--panel);       /* shows behind image if it doesn't fill */
+      box-shadow: var(--shadow);
+
+      /* choose ONE of these sizing approaches: */
+
+      /* A) consistent “portrait tile” size */
+      aspect-ratio: 1;
+    }
+
+    /* image behavior */
+    .photo-card img{
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      object-fit: contain;            /* shows FULL photo (no crop) */
+      object-fit: cover;        /* (optional) fills box but crops */
+    }
   </style>
 </head>
 
@@ -342,8 +355,8 @@
     <div class="container">
       <nav aria-label="Primary">
         <a class="brand" href="#top">
-          <div class="logo" aria-hidden="true"></div>
-          <span>[Your Name]</span>
+          <!-- <div class="logo" aria-hidden="true"></div> -->
+          <span>Erin Hsu</span>
         </a>
 
         <div class="navlinks">
@@ -362,20 +375,19 @@
       <div class="hero">
         <div>
           <div class="pill">Available for internships · 2026</div>
-          <h1>Visual Development + Illustration, with a clean eye for design.</h1>
+          <h1>A visual designer and photographer working across media and interaction.</h1>
           <p>
-            I’m <strong>[Your Name]</strong>, a student artist building worlds for film, TV, and animation.
-            I focus on strong composition, color, and atmosphere, and I love making work that feels intentional and modern.
+            I’m <strong>Erin Hsu</strong>, studying art, design, and HCI @ CMU.
           </p>
 
           <div class="cta">
             <a class="btn primary" href="#work">View selected work</a>
-            <a class="btn" href="[link-to-resume.pdf]" target="_blank" rel="noopener">Resume</a>
-            <a class="btn" href="mailto:[you@email.com]">Email me</a>
+            <a class="btn" href="erinHsuResume.pdf" target="_blank" rel="noopener">Resume</a>
+            <a class="btn" href="mailto:erinhsu@andrew.cmu.edu">Email me</a>
           </div>
         </div>
 
-        <aside class="card" aria-label="Quick facts">
+        <!-- <aside class="card" aria-label="Quick facts">
           <h2>At a glance</h2>
           <ul class="facts">
             <li>
@@ -391,19 +403,18 @@
               <span>[City], [State] · Open to remote</span>
             </li>
           </ul>
-        </aside>
+        </aside> -->
       </div>
 
       <!-- WORK -->
       <section id="work" aria-label="Selected work">
         <div class="section-title">
           <h2>Selected work</h2>
-          <p>Projects, studies, and experiments. Click a card to open a case study or gallery.</p>
         </div>
 
         <div class="grid">
           <!-- Project 1 -->
-          <a class="project" href="[project-1.html]">
+          <a class="project" href="page1.html">
             <div class="thumb" role="img" aria-label="Project thumbnail placeholder"></div>
             <div class="body">
               <h3>Project Title One</h3>
@@ -461,34 +472,20 @@
       <section id="about" aria-label="About">
         <div class="section-title">
           <h2>About</h2>
-          <p>A quick bio plus what you’re looking for right now.</p>
         </div>
 
         <div class="about">
           <div class="card">
             <h2>Bio</h2>
             <p>
-              Write 3–5 sentences about your interests, what kind of stories/genres you love,
-              and what you want to do in the industry. Keep it warm and direct.
+              I'm Erin Hsu, a visual designer, photographer, and artist from Cupertino, CA. 
+              My practice focuses on translating systems, culture, and environments into visual form. <br><br>
+              I’m currently studying Art & Design with an additional major in Human-Computer Interaction @ CMU.
             </p>
           </div>
 
-          <div class="card">
-            <h2>Currently</h2>
-            <ul class="facts">
-              <li>
-                <strong>Seeking</strong>
-                <span>Internship opportunities (Summer 2026)</span>
-              </li>
-              <li>
-                <strong>Best work</strong>
-                <span>Color keys, environments, and character moments</span>
-              </li>
-              <li>
-                <strong>Collab</strong>
-                <span>Open to short film / student team projects</span>
-              </li>
-            </ul>
+          <div class="photo-card">
+             <img src="images/erinhsubio.jpg" alt="Project preview">
           </div>
         </div>
       </section>
@@ -502,20 +499,20 @@
 
         <div class="card">
           <div class="cta">
-            <a class="btn primary" href="mailto:[you@email.com]">you@email.com</a>
-            <a class="btn" href="[https://instagram.com/yourhandle]" target="_blank" rel="noopener">Instagram</a>
-            <a class="btn" href="[https://www.linkedin.com/in/yourname]" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn primary" href="mailto:erinhsu@andrew.cmu.edu">erinhsu@andrew.cmu.edu</a>
+            <a class="btn" href="https://www.instagram.com/ernhsu/" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn" href="https://www.linkedin.com/in/erinhsuu" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
       </section>
 
       <footer>
         <div class="footer-row">
-          <small>© <span id="year"></span> [Your Name]. Built with HTML/CSS.</small>
+          <small>© <span id="year"></span> Erin Hsu. Built with HTML/CSS.</small>
           <div class="links" aria-label="Footer links">
             <a href="#top">Back to top</a>
-            <a href="[link-to-resume.pdf]" target="_blank" rel="noopener">Resume</a>
-            <a href="mailto:[you@email.com]">Email</a>
+            <a href="erinHsuResume.pdf" target="_blank" rel="noopener">Resume</a>
+            <a href="mailto:erinhsu@andrew.cmu.edu">Email</a>
           </div>
         </div>
       </footer>

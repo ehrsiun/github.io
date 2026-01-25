@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="[Project title] case study by Erin Hsu." />
+
+  <title>[Project Title] — Erin Hsu</title>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#fafafa;
+      --text:#0b0c0f;
+      --muted:#5b6472;
+      --border:rgba(15,20,30,.12);
+      --shadow:0 10px 30px rgba(0,0,0,.06);
+      --radius:18px;
+      --max:1100px;
+
+      --space-1:.5rem;
+      --space-2:.75rem;
+      --space-3:1rem;
+      --space-4:1.5rem;
+      --space-5:2rem;
+      --space-6:3rem;
+
+      --h1: clamp(2rem, 4vw, 3rem);
+      --h2: clamp(1.25rem, 2.5vw, 1.75rem);
+      --h3: 1.05rem;
+      --p: 1.02rem;
+
+      --accent:#2a5bff;
+      --accent-2:#14b8a6;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b0c0f;
+        --panel:#0f1217;
+        --text:#f3f5f7;
+        --muted:#a6b0bf;
+        --border:rgba(255,255,255,.12);
+        --shadow:0 12px 35px rgba(0,0,0,.35);
+        --accent:#7aa2ff;
+        --accent-2:#2dd4bf;
+      }
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      letter-spacing:-0.01em;
+    }
+
+    .container{
+      width: min(100% - 2rem, var(--max));
+      margin-inline:auto;
+    }
+
+    /* Header / Nav (matches your home) */
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:.9rem 0;
+    }
+    .brand{
+      text-decoration:none;
+      color:inherit;
+      font-weight:650;
+      letter-spacing:-0.02em;
+    }
+    .navlinks{
+      display:flex;
+      gap:.4rem;
+      align-items:center;
+    }
+    .navlinks a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:.55rem .75rem;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .navlinks a:hover{
+      color:var(--text);
+      border-color:var(--border);
+      background:var(--panel);
+    }
+
+    /* Components */
+    .pill{
+      display:inline-flex;
+      gap:.5rem;
+      align-items:center;
+      padding:.4rem .7rem;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background: color-mix(in srgb, var(--panel) 70%, transparent);
+      color:var(--muted);
+      font-size:.9rem;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      padding:.75rem .95rem;
+      border-radius:14px;
+      border:1px solid var(--border);
+      text-decoration:none;
+      color:var(--text);
+      background:var(--panel);
+      box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
+      white-space:nowrap;
+    }
+    .btn.primary{
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+      background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+
+    .card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 85%, transparent), var(--panel));
+      border-radius:var(--radius);
+      padding:1.1rem;
+      box-shadow:var(--shadow);
+    }
+
+    main{ padding: var(--space-6) 0; }
+
+    /* Project header */
+    .project-hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: var(--space-6);
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .project-hero{ grid-template-columns:1fr; }
+    }
+
+    h1{
+      font-size:var(--h1);
+      line-height:1.08;
+      margin: .6rem 0 1rem;
+      letter-spacing:-0.04em;
+    }
+    .lede{
+      margin:0 0 1.25rem;
+      color:var(--muted);
+      font-size:var(--p);
+      max-width:70ch;
+    }
+    .meta{
+      display:grid;
+      gap:.75rem;
+      margin-top:.5rem;
+    }
+    .meta-row{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      padding:.85rem;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+    }
+    .meta-row span{ color:var(--muted); }
+    .meta-row strong{ font-weight:650; }
+
+    /* Cover image */
+    .cover{
+      margin-top: var(--space-5);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:var(--panel);
+      box-shadow:var(--shadow);
+    }
+    .cover img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Content layout */
+    .content{
+      margin-top: var(--space-6);
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1.5rem;
+      align-items:start;
+    }
+    @media (max-width: 950px){
+      .content{ grid-template-columns: 1fr; }
+    }
+
+    .prose{
+      display:flex;
+      flex-direction:column;
+      gap: 1.25rem;
+    }
+
+    .section{
+      padding: 1.25rem;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .section h2{
+      margin:0 0 .5rem;
+      font-size:var(--h2);
+      letter-spacing:-0.03em;
+    }
+    .section p{
+      margin:.5rem 0 0;
+      color:var(--muted);
+      font-size:var(--p);
+    }
+    .section ul{
+      margin:.75rem 0 0;
+      padding-left: 1.1rem;
+      color:var(--muted);
+      font-size:var(--p);
+    }
+
+    /* Image gallery blocks */
+    figure{
+      margin:0;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:var(--bg);
+    }
+    figure img{
+      width:100%;
+      display:block;
+      height:auto;
+    }
+    figcaption{
+      padding:.85rem 1rem;
+      color:var(--muted);
+      font-size:.95rem;
+      border-top:1px solid var(--border);
+      background: color-mix(in srgb, var(--panel) 70%, transparent);
+    }
+
+    /* Sidebar */
+    .sidebar{
+      position:sticky;
+      top: 92px; /* keeps below nav */
+      display:flex;
+      flex-direction:column;
+      gap: 1rem;
+    }
+    @media (max-width: 950px){
+      .sidebar{ position:static; }
+    }
+    .side-title{
+      margin:0 0 .6rem;
+      font-size:.95rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:650;
+    }
+    .side-list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:.6rem;
+    }
+    .side-list li{
+      padding:.8rem;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+    }
+    .side-list strong{ display:block; }
+    .side-list span{ color:var(--muted); }
+
+    /* Footer */
+    footer{
+      margin-top: var(--space-6);
+      padding: 2rem 0 3rem;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+    }
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .links{ display:flex; gap:.75rem; flex-wrap:wrap; }
+    .links a{
+      color:var(--muted);
+      text-decoration:none;
+      border-bottom:1px solid transparent;
+    }
+    .links a:hover{
+      color:var(--text);
+      border-bottom-color:var(--border);
+    }
+
+    /* Optional: smooth anchor offset for sticky header */
+    .anchor{ scroll-margin-top: 110px; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav aria-label="Primary">
+        <a class="brand" href="main.html">Erin Hsu</a>
+        <div class="navlinks">
+          <a href="main.html#work">Work</a>
+          <a href="main.html#about">About</a>
+          <a href="main.html#contact">Contact</a>
+          <a class="btn primary" href="main.html#contact" style="padding:.6rem .85rem;">Let’s talk</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- TOP: title + quick summary -->
+      <div class="project-hero">
+        <div>
+          <div class="pill">
+            <span>[Category]</span>
+            <span>·</span>
+            <span>[Year]</span>
+            <span>·</span>
+            <span>[Role / Medium]</span>
+          </div>
+
+          <h1>[Project Title]</h1>
+
+          <p class="lede">
+            [1–3 sentence overview. What is this project? What did you make? What was the goal?]
+          </p>
+
+          <div style="display:flex; gap:.75rem; flex-wrap:wrap;">
+            <a class="btn primary" href="#overview">Jump to overview</a>
+            <a class="btn" href="[link-to-final-work]" target="_blank" rel="noopener">View final</a>
+          </div>
+        </div>
+
+        <!-- Right: quick meta -->
+        <aside class="card" aria-label="Project details">
+          <p class="side-title" style="margin-top:0;">Project details</p>
+
+          <div class="meta">
+            <div class="meta-row">
+              <span>Timeline</span>
+              <strong>[e.g., 2 weeks / Fall 2025]</strong>
+            </div>
+            <div class="meta-row">
+              <span>Tools</span>
+              <strong>[e.g., Figma, Photoshop]</strong>
+            </div>
+            <div class="meta-row">
+              <span>Team</span>
+              <strong>[Solo / Team of 3]</strong>
+            </div>
+            <div class="meta-row">
+              <span>Deliverables</span>
+              <strong>[Poster, photo series, app, etc.]</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- COVER IMAGE (swap src) -->
+
+
+      <!-- MAIN CONTENT -->
+      <div class="content">
+        <!-- LEFT: case study content -->
+        <div class="prose">
+
+          <section id="overview" class="section anchor">
+            <h2>Overview</h2>
+            <p>
+              [What this project is. Context, prompt, and goals in 1 short paragraph.]
+            </p>
+            <ul>
+              <li><strong>Goal:</strong> [What you were trying to achieve]</li>
+              <li><strong>Audience:</strong> [Who it’s for]</li>
+              <li><strong>Constraints:</strong> [Time, format, requirements]</li>
+            </ul>
+          </section>
+
+          <section id="process" class="section anchor">
+            <h2>Process</h2>
+            <p>
+              [High-level steps you took. Keep it scannable.]
+            </p>
+            <ul>
+              <li>[Research / inspiration / references]</li>
+              <li>[Sketching / iteration / testing]</li>
+              <li>[Production / polish / final decisions]</li>
+            </ul>
+          </section>
+
+          <!-- IMAGE + CAPTION BLOCK -->
+          <figure>
+            <img src="images/process-1.jpg" alt="[Describe this image]" />
+            <figcaption>[Caption: what are we looking at and why does it matter?]</figcaption>
+          </figure>
+
+          <section id="solution" class="section anchor">
+            <h2>Solution</h2>
+            <p>
+              [Describe the final outcome and what makes it effective. Mention key design decisions.]
+            </p>
+          </section>
+
+          <!-- OPTIONAL: two images in a row (simple) -->
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <figure>
+              <img src="images/final-1.jpg" alt="[Describe image 1]" />
+              <figcaption>[Caption 1]</figcaption>
+            </figure>
+            <figure>
+              <img src="images/final-2.jpg" alt="[Describe image 2]" />
+              <figcaption>[Caption 2]</figcaption>
+            </figure>
+          </div>
+
+          <section id="reflection" class="section anchor">
+            <h2>Reflection</h2>
+            <p>
+              [What you learned, what you’d improve next time, and what you’re proud of.]
+            </p>
+          </section>
+
+          <section class="section">
+            <h2>Next project</h2>
+            <p>
+              Link people onward so they don’t dead-end here.
+            </p>
+            <div style="display:flex; gap:.75rem; flex-wrap:wrap; margin-top: .75rem;">
+              <a class="btn" href="main.html#work">Back to work</a>
+              <a class="btn primary" href="[project-2.html]">Next: [Project Title]</a>
+            </div>
+          </section>
+        </div>
+
+        <!-- RIGHT: sticky sidebar -->
+        <aside class="sidebar" aria-label="On this page">
+          <div class="card">
+            <p class="side-title">On this page</p>
+            <div class="links" style="gap:.6rem;">
+              <a href="#overview">Overview</a>
+              <a href="#process">Process</a>
+              <a href="#solution">Solution</a>
+              <a href="#reflection">Reflection</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <p class="side-title">Tags</p>
+            <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+              <span class="pill">[Tag]</span>
+              <span class="pill">[Tag]</span>
+              <span class="pill">[Tag]</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <p class="side-title">Credits</p>
+            <ul class="side-list">
+              <li>
+                <strong>Role</strong>
+                <span>[e.g., Visual design, photography, layout]</span>
+              </li>
+              <li>
+                <strong>Collaborators</strong>
+                <span>[Names / “N/A”]</span>
+              </li>
+              <li>
+                <strong>Links</strong>
+                <span>
+                  <a href="[link]" target="_blank" rel="noopener">[Optional link]</a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        <div class="footer-row">
+          <small>© <span id="year"></span> Erin Hsu. Built with HTML/CSS.</small>
+          <div class="links" aria-label="Footer links">
+            <a href="main.html#top">Home</a>
+            <a href="main.html#work">Work</a>
+            <a href="main.html#contract">Contact</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+```
